@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+    <a href="{% url 'listar_pedido' %}">Pedidos</a>
+    <form action="{% url 'pagina_inicial' %}" method="post">
+        {% csrf_token %}
+        {{form}}
+        <button type="submit">Criar pedido</button>
+    </form>
+    <a href="{% url 'deslogar' %}" method="post">
+        <button type="submit">Deslogar</button>
+    </a>
+    <a href="{% url 'cadastrar_comida' %}" method="post">
+        <button type="submit">Cadastrar comida</button>
+    </a>
+    <table>
+        <tr>
+            <th>Nome</th>
+            <th>Preço</th>
+            <th>Descrição</th>
+            <th>Estoque</th>
+            <th>Imagem</th>
+            <th>Categoria</th>
+        </tr>
+        {% for comida in comidas %}
+        <tr>
+            <td>{{comida.nome}}</td>
+            <td>{{comida.preco}}</td>
+            <td>{{comida.descricao}}</td>
+            <td>{{comida.estoque}}</td>
+            <td><img src="{{comida.imagem.url}}" alt="Imagem da coca-cola"></td>
+            <td>{{comida.categoria}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

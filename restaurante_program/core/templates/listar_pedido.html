@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+    </a>
+    <table>
+        <tr>
+            <h2>Ativos</h2>
+            <th>Data e Hora</th>
+            <th>Comida</th>
+        </tr>
+        {% for pedido in pedidos_ativos %}
+        <tr>
+            <td>{{pedido.data_e_hora}}</td>
+            <td>{{pedido.ativo}}</td>
+            <td><a href="{% url 'fechar_pedido' pedido.id %}">Fechar pedido</a></td>
+            <td><a href="{% url 'comidanpedido' %}">Comida no Pedido</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    <table>
+        <tr>
+            <h2>Inativos</h2>
+            <th>Data e Hora</th>
+            <th>Comida</th>
+        </tr>
+        {% for pedido in pedidos_inativos %}
+        <tr>
+            <td>{{pedido.data_e_hora}}</td>
+            <td>{{pedido.ativo}}</td>
+            <td><a href="{% url 'fechar_pedido' pedido.id %}">Ativar pedido</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
