@@ -13,5 +13,6 @@ urlpatterns = [
     path('editar_categoria/<int:id_categoria>/', editar_categoria, name='editar_categoria'),
     path('editar_comida/<int:id_comida>/', editar_comida, name='editar_comida'),
     path('fechar_pedido/<int:id_pedido>', fechar_pedido, name='fechar_pedido'),
-    path('comidanpedido/', comidanpedido, name='comidanpedido')
+    path('comidanpedido/', comidanpedido, name='comidanpedido'),
+    path('cadastrar_garcom/', cadastrar_garcom, name="cadastrar_garcom")
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
