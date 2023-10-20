@@ -104,3 +104,12 @@ def comidanpedido(request):
         comidas_pedidos.objects.create(comida=comida, pedido=pedido, quantidade=quantidade)
 
     return render(request, 'comidanpedido.html', {'form': form})
+
+def cadastrar_garcom(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+    else:
+        form = UserCreationForm()
+    return render(request, 'cadastrar_garcom.html', {'form': form})
