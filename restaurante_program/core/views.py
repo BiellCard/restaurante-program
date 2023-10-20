@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 # Create your views here.
-
+@login_required()
 def deslogar(request):
     logout(request)
     return redirect(logar)
@@ -21,6 +21,7 @@ def logar(request):
         form = AuthenticationForm()
     return render(request, 'logar.html', {'form': form})
 
+@login_required()
 def cadastrar_comida(request):
     categorias = Categoria.objects.all()
     if request.method == 'POST':
@@ -31,6 +32,7 @@ def cadastrar_comida(request):
         form = Form_Comida()
     return render(request, 'cadastrar_comida.html', {'categorias': categorias, 'form': form})
 
+@login_required()
 def pagina_inicial(request):
     comidas = Comida.objects.all()
     if request.method == 'POST':
@@ -42,12 +44,14 @@ def pagina_inicial(request):
 
     return render(request, 'pagina_inicial.html', {'comidas': comidas, 'form': form})
 
+@login_required()
 def listar_pedido(request):
     pedidos_ativos = Pedido.objects.filter(ativo=1)
     pedidos_inativos = Pedido.objects.filter(ativo=0)
 
     return render(request, 'listar_pedido.html', {'pedidos_ativos': pedidos_ativos, 'pedidos_inativos': pedidos_inativos})
 
+@login_required()
 def cadastrar_categoria(request):
     form = Form_Categoria()
     if request.method == 'POST':
@@ -59,6 +63,7 @@ def cadastrar_categoria(request):
 
     return render(request, 'cadastro_categoria.html', {'form': form})
 
+@login_required()
 def editar_categoria(request, id_categoria):
     categoria_puxada = Categoria.objects.get(id=id_categoria)
 
@@ -69,6 +74,7 @@ def editar_categoria(request, id_categoria):
     
     return render(request, 'editar_categoria.html', {'categoria': categoria_puxada})
 
+@login_required()
 def editar_comida(request, id_comida):
     categorias = Categoria.objects.all()
     comida = Comida.objects.get(id=id_comida)
@@ -83,6 +89,7 @@ def editar_comida(request, id_comida):
 
     return render(request, 'editar_comida.html', {'comida': comida, 'categorias': categorias})
 
+@login_required()
 def fechar_pedido(request, id_pedido):
     pedidos = Pedido.objects.get(id=id_pedido)
     if pedidos.ativo==0:
@@ -93,6 +100,7 @@ def fechar_pedido(request, id_pedido):
     pedidos.save()
     return redirect(listar_pedido)
 
+@login_required()
 def comidanpedido(request):
     form = Form_comida_pedidos()
     if request.method == 'POST':
