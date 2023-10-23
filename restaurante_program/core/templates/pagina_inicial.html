@@ -37,6 +37,7 @@
             <td>{{comida.estoque}}</td>
             <td><img src="{{comida.imagem.url}}" alt="Imagem da coca-cola"></td>
             <td>{{comida.categoria}}</td>
+            <td><a href="{% url 'excluir_comida' comida.id %}">Excluir comida</a></td>
         </tr>
         {% endfor %}
     </table>

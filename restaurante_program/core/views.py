@@ -32,6 +32,14 @@ def cadastrar_comida(request):
         form = Form_Comida()
     return render(request, 'cadastrar_comida.html', {'categorias': categorias, 'form': form})
 
+def excluir_comida(request, id_comida):
+
+    comida = Comida.objects.get(id=id_comida)
+
+    comida.delete()
+
+    return redirect(pagina_inicial)
+
 @login_required(login_url='/logar/')
 def pagina_inicial(request):
     comidas = Comida.objects.all()
@@ -113,6 +121,7 @@ def comidanpedido(request):
 
     return render(request, 'comidanpedido.html', {'form': form})
 
+@login_required(login_url='/logar/')
 def cadastrar_garcom(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
@@ -121,3 +130,17 @@ def cadastrar_garcom(request):
     else:
         form = UserCreationForm()
     return render(request, 'cadastrar_garcom.html', {'form': form})
+
+@login_required(login_url='/logar/')
+def exibir_categorias(request):
+    categorias = Categoria.objects.all()
+
+    return render(request, 'categorias.html', {'categorias': categorias})
+
+@login_required(login_url='/logar/')
+def excluir_categoria(request, id_categoria):
+    categoria = Categoria.objects.get(id=id_categoria)
+
+    categoria.delete()
+
+    return redirect(exibir_categorias)
