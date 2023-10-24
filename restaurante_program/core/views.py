@@ -145,6 +145,7 @@ def excluir_categoria(request, id_categoria):
 
     return redirect(exibir_categorias)
 
+@login_required(login_url='/logar/')
 def criar_pedido(request):
     pedidos = Pedido.objects.all()
     if request.method == 'POST':
