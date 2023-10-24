@@ -18,4 +18,5 @@ urlpatterns = [
     path('cadastrar_garcom/', cadastrar_garcom, name="cadastrar_garcom"),
     path('exibir_categoria/', exibir_categorias, name='exibir_categoria'),
     path('excluir_categoria/<int:id_categoria>/', excluir_categoria, name='excluir_categoria'),
+    path('criar_pedido', criar_pedido, name='criar_pedido'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

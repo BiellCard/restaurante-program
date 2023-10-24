@@ -144,3 +144,13 @@ def excluir_categoria(request, id_categoria):
     categoria.delete()
 
     return redirect(exibir_categorias)
+
+def criar_pedido(request):
+    pedidos = Pedido.objects.all()
+    if request.method == 'POST':
+        form = Form_Pedido(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+    else:
+        form = Form_Pedido()
+    return render(request, 'cadastrar_comida.html', {'pedidos': pedidos, 'form': form})
